@@ -4,14 +4,26 @@ namespace Code_Challenge_Day_24_More_Linked_Lists
 {
     class Program
     {
-		public static Node removeDuplicates(Node head)
+		public static Node RemoveDuplicates(Node head)
 		{
-			//Write your code here
+			Node result = new Node(head.data);
+			Node temp = new Node(head.data);
+			while(head != null)
+            {
+				if(head.data != temp.data)
+                {
+					temp = new Node(head.data);
+					result = Insert(result, head.data);
+                }
+				head = head.next;
+            }
+
+			return result;
+
 		}
-		public static Node insert(Node head, int data)
+		public static Node Insert(Node head, int data)
 		{
 			Node p = new Node(data);
-
 
 			if (head == null)
 				head = p;
@@ -44,9 +56,9 @@ namespace Code_Challenge_Day_24_More_Linked_Lists
 			while (T-- > 0)
 			{
 				int data = Int32.Parse(Console.ReadLine());
-				head = insert(head, data);
+				head = Insert(head, data);
 			}
-			head = removeDuplicates(head);
+			head = RemoveDuplicates(head);
 			display(head);
 		}
 	}
